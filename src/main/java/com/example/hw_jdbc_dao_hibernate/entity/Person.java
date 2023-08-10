@@ -1,8 +1,6 @@
 package com.example.hw_jdbc_dao_hibernate.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,6 +13,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "persons", schema = "hwsql")
+@IdClass(Person.class)
 @Entity
 public class Person implements Serializable {
     @Id
@@ -23,6 +22,8 @@ public class Person implements Serializable {
     private String surname;
     @Id
     private int age;
-    private int phone_number;
-    private String city_of_living;
+    @Column(name = "phone_number")
+    private int phoneNumber;
+    @Column(name = "city_of_living")
+    private String cityOfLiving;
 }
