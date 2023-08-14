@@ -2,14 +2,13 @@ package com.example.hw_jdbc_dao_hibernate.controller;
 
 import com.example.hw_jdbc_dao_hibernate.entity.Person;
 import com.example.hw_jdbc_dao_hibernate.service.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
+@RequestMapping("/persons")
 public class Controller {
     private final Service service;
 
@@ -17,9 +16,19 @@ public class Controller {
         this.service = service;
     }
 
-    @GetMapping("/persons/by-city")
-    @ResponseBody
-    public List<Person> getProduct(@RequestParam("city") String city) {
-        return service.getPersonsByCity(city);
+    @GetMapping("/by-city")
+    public List<Person> getPersonByCity(String city) {
+        return service.getPersonByCity(city);
     }
+
+    @GetMapping("/age-less-than")
+    public List<Person> getPersonByAgeLessThanOrderBy(int age) {
+        return service.getPersonByAgeLessThanOrderByAge(age);
+    }
+
+    @GetMapping("/by-name-and-surname")
+    public Optional<Person> getPersonByNameAndSurname(String name, String surname) {
+        return service.getPersonByNameAndSurname(name, surname);
+    }
+
 }

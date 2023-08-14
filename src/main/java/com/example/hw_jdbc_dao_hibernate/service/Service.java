@@ -1,19 +1,29 @@
 package com.example.hw_jdbc_dao_hibernate.service;
 
 import com.example.hw_jdbc_dao_hibernate.entity.Person;
-import com.example.hw_jdbc_dao_hibernate.repository.Repository;
+import com.example.hw_jdbc_dao_hibernate.repository.PersonRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @org.springframework.stereotype.Service
 public class Service {
-    private final Repository repository;
+    private final PersonRepository personRepository;
 
-    public Service(Repository repository) {
-        this.repository = repository;
+    public Service(PersonRepository personRepository) {
+        this.personRepository = personRepository;
     }
 
-    public List<Person> getPersonsByCity(String city) {
-        return repository.getPersonsByCity(city);
+    public List<Person> getPersonByCity(String city) {
+        return personRepository.findByCityOfLiving(city);
     }
+
+    public List<Person> getPersonByAgeLessThanOrderByAge(int age) {
+        return personRepository.findByAgeLessThanOrderByAge(age);
+    }
+
+    public Optional<Person> getPersonByNameAndSurname(String name, String surname) {
+        return personRepository.findByNameAndSurname(name, surname);
+    }
+
 }
