@@ -1,11 +1,13 @@
 package com.example.hw_jdbc_dao_hibernate.entity;
 
-import jakarta.persistence.*;
+//import jakarta.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Data
